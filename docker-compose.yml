@@ -1,0 +1,8 @@
+services:
+  scraper:
+    build: .
+    container_name: twscrape
+    volumes:
+      - ./data:/app/data
+      - ./cookies:/app/cookies
+    restart: unless-stopped

@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# IDE
+.vscode/
+
+# Secrets / データ
+.env
+cookies/
+data/
+*.sqlite
+
+# Docker local
+db_data/
