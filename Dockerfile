@@ -12,8 +12,7 @@ COPY requirements.txt .
 RUN pip install --no-color --disable-pip-version-check -r requirements.txt
 
 # アプリケーションコード
-COPY fetcher.py .
-COPY cookies ./cookies
+COPY . .
 VOLUME ["/app/data"]
 
 CMD ["python", "fetcher.py"]

@@ -6,3 +6,10 @@ services:
       - ./data:/app/data
       - ./cookies:/app/cookies
     restart: unless-stopped
+  worker:
+    build: .
+    command: python worker_dify.py
+    volumes:
+      - ./data:/app/data
+    env_file: .env
+    restart: unless-stopped

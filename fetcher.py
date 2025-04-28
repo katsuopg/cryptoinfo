@@ -15,7 +15,7 @@ from twscrape.logger import set_log_level
 # ────────────── 設定 ────────────── #
 USERNAMES = [
     "WuBlockchain", "PANewsCN", "ChainCatcher_", "WatcherGuru",
-    "TheBlock__", "lookonchain"
+    "TheBlock__", "lookonchain","Alicebrain555"
 ]
 
 COOKIE_PATH = pathlib.Path("cookies/accounts.json")
@@ -50,7 +50,15 @@ async def load_accounts(api: API, accounts: List[dict]) -> None:
         )
 
 async def get_user_ids(api: API, usernames: List[str]) -> Dict[str, int]:
-    return {u: (await api.user_by_login(u)).id for u in usernames}
+    result = {}
+    for u in usernames:
+        try:
+            user = await api.user_by_login(u)
+            print(f"[fetcher] ユーザー取得成功: {u} → {user.id}")
+            result[u] = user.id
+        except Exception as e:
+            print(f"[fetcher] ユーザー取得失敗: {u} → {e}")
+    return result
 
 def init_db() -> sqlite3.Connection:
     conn = sqlite3.connect(DB_SQLITE, check_same_thread=False)
